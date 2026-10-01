@@ -2,10 +2,9 @@
 
 MediaPipe reads a video of a person and writes matching joint angles into a Unitree G1 in MuJoCo. The pose is kinematic: the viewer shows the body copying the video. The robot is not balance-controlled, so it does not walk under physics. The pelvis turns with the hips, slides with the person, and the lower foot stays on the floor.
 
-## Keep these folders together
+## Folders Path
 
 ```
-Tan_Chen/
   Unitree_G1/                              scripts and videos
   mujoco_menagerie#getting-started/
     unitree_g1/scene.xml                   G1 model the scripts load
@@ -15,17 +14,15 @@ Leave the menagerie folder name as it is, including the `#`. The scripts load th
 
 ## Setup
 
-Use Python 3.11 and a machine with a local display. The MuJoCo window and the OpenCV window both open on that display.
+using Python 3.10 and a machine with a local display. The MuJoCo window and the OpenCV window both open on that display.
 
 From `Unitree_G1`:
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+## Personally I'm using Conda as my python environment with Python 3.10
+``` inside the console
 python -m pip install -r requirements.txt
 ```
 
-On macOS or Linux, activate with `source .venv/bin/activate` instead of the PowerShell line.
 
 `mujoco` from that file includes the interactive viewer. MediaPipe is pinned to 0.10.9 because the scripts use `mp.solutions`. Later MediaPipe releases removed that API.
 
@@ -35,7 +32,7 @@ Run each command from `Unitree_G1`, with the virtual environment active.
 
 1. MuJoCo and the G1 model:
 
-   ```powershell
+   ```inside the console
    python simulate_g1.py
    ```
 
@@ -43,7 +40,7 @@ Run each command from `Unitree_G1`, with the virtual environment active.
 
 2. MediaPipe and OpenCV:
 
-   ```powershell
+   ```inside the console
    python track_pose.py
    ```
 
@@ -51,7 +48,7 @@ Run each command from `Unitree_G1`, with the virtual environment active.
 
 3. Full-body retarget:
 
-   ```powershell
+   ```inside the console
    python teleop_fullbody.py
    ```
 
@@ -63,6 +60,4 @@ Run each command from `Unitree_G1`, with the virtual environment active.
 
 To try another clip, change `VIDEO_PATH` at the top of `teleop_fullbody.py` to a video inside `Unitree_G1`.
 
-## If something fails
 
-Install with Python 3.11, and leave MediaPipe at 0.10.9. A missing `scene.xml` means `mujoco_menagerie#getting-started` is not sitting next to `Unitree_G1`.
